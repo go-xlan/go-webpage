@@ -11,8 +11,12 @@ import (
 )
 
 // NewTable 将结构体指针切片转换为 HTML 表格，支持自定义标签名
-func NewTable[T any](objects []*T, options *Options) string {
-	keys, rows := extract(objects, options)
+func NewTable[T any](objects []*T) string {
+	return NewTableWithOptions(objects, NewOptions())
+}
+
+func NewTableWithOptions[T any](objects []*T, options *Options) string {
+	keys, rows := extract(objects, must.Nice(options))
 
 	tableTrTHs := newTroTHs(keys)
 	tableTrTDs := newTrnTDs(rows)
