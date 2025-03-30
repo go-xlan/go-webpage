@@ -1,4 +1,4 @@
-package struct2table
+package slice2table
 
 import (
 	"fmt"

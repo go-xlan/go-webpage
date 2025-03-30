@@ -1,9 +1,9 @@
-package struct2table_test
+package slice2table_test
 
 import (
 	"testing"
 
-	struct2table "github.com/go-xlan/go-web-table/stuct2table"
+	struct2table "github.com/go-xlan/go-web-table/slice2table"
 	"github.com/stretchr/testify/require"
 )
 

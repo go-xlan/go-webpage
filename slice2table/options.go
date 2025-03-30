@@ -1,4 +1,4 @@
-package struct2table
+package slice2table
 
 type Options struct {
 	TagName string
