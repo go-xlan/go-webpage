@@ -1,2 +1,2 @@
-# go-web-table
-convert golang struct-slice to web table
+# go-webpage
+convert golang struct-slice to web page table
