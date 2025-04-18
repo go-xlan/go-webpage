@@ -37,7 +37,7 @@ func main() {
 	page2 := utils.NewPage("guests", slice2table.NewTable(guests))
 
 	firefoxDraw := firefoxopen.NewFirefoxDraw()
-	defer firefoxDraw.Close(time.Second * 3)
+	defer firefoxDraw.Close(time.Minute)
 	firefoxDraw.ShowInNewTabs(page1, page2)
 	fmt.Println("done")
 }

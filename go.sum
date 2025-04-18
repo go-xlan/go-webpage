@@ -94,8 +94,8 @@ github.com/yyle88/mutexmap v1.0.13 h1:wp/6mv/gsC2DSqNbhMYiil4gtnb0sDCIhHHIHK2h0c
 github.com/yyle88/mutexmap v1.0.13/go.mod h1:QUYDuARLPlGj414kHewQ5tt8jkDxQXoai8H3C4Gg+yc=
 github.com/yyle88/neatjson v0.0.12 h1:M6y4IsHbe2/3drF/kDl3zBpaN29lmfW4MetEQcoG04A=
 github.com/yyle88/neatjson v0.0.12/go.mod h1:LT3nIhKyB3lkD3INiIXCN3FejNu+g+qvzCJ+fZSZaRc=
-github.com/yyle88/osexec v0.0.25 h1:NyXvhUkNVc+ArgNdkMt3MhwuFpYr7SYg8EpQ4SeqwM4=
-github.com/yyle88/osexec v0.0.25/go.mod h1:7UgcilMGf3b7RZcu8yRI5RVEE+aXIyOO8A70fTtREEc=
+github.com/yyle88/osexec v0.0.26 h1:oLYblp3DH55DT+KNMtntifEjy5WUNj7YLYdBUWjNLiw=
+github.com/yyle88/osexec v0.0.26/go.mod h1:edWVMCfUjE6SpLrbkngJM+W+HCzUZysRVlWMT/woHQE=
 github.com/yyle88/printgo v1.0.5 h1:gmaJKzEkrH6adbgfOfS6xq02CdvsE8QF+uKXXOdVLN8=
 github.com/yyle88/printgo v1.0.5/go.mod h1:QZZD92Orn8ddmxF5IOEFvLPPW66UIQtgoLixPdpXuQc=
 github.com/yyle88/rese v0.0.10 h1:rMEcybaIe/CNVMmilgor3nMQWB4TcJgXRttvDjKtvLg=

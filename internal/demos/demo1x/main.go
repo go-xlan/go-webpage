@@ -37,7 +37,7 @@ func main() {
 
 	firefoxopen.OpenInNewTabs(osexec.NewOsCommand().WithDebug(), link)
 	fmt.Println("done")
-	time.Sleep(time.Second * 3)
+	time.Sleep(time.Minute)
 }
 
 func newStudentScore() *StudentScore {

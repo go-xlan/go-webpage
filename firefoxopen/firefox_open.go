@@ -16,10 +16,8 @@ func OpenInNewTabs(command *osexec.OsCommand, urls ...string) {
 }
 
 func Open(command *osexec.OsCommand, urls []string, openOption string) {
-	var args = []string{must.Nice(openOption)}
-	for _, link := range urls {
-		args = append(args, link)
-	}
+	args := []string{must.Nice(openOption)}
+	args = append(args, urls...)
 	output := rese.V1(command.Exec("firefox", args...))
 	zaplog.SUG.Debugln(string(output))
 }
