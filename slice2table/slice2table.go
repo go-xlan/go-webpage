@@ -12,30 +12,30 @@ import (
 
 // NewTable 将结构体指针切片转换为 HTML 表格，支持自定义标签名
 func NewTable[T any](objects []*T) string {
-	return NewTableWithOptions(objects, NewOptions())
+	return GenTable(objects, NewOptions())
 }
 
-func NewTableWithOptions[T any](objects []*T, options *Options) string {
-	keys, rows := extract(objects, must.Nice(options))
+func GenTable[T any](objects []*T, options *Options) string {
+	columnNames, dataRows := extract(objects, must.Nice(options))
 
-	tableTrTHs := newTroTHs(keys)
-	tableTrTDs := newTrnTDs(rows)
+	tableHeadLine := newHeadLine(columnNames)
+	tableBodyRows := newDataRows(dataRows)
 
-	return `<table border="1">` + tableTrTHs + strings.Join(tableTrTDs, "") + `</table>`
+	return `<table border="1">` + tableHeadLine + strings.Join(tableBodyRows, "") + `</table>`
 }
 
 func extract[T any](objects []*T, options *Options) ([]string, [][]string) {
-	elemType := syntaxgo_reflect.GetTypeV2[T]()
-	must.Same(elemType.Kind(), reflect.Struct)
+	structType := syntaxgo_reflect.GetTypeV2[T]()
+	must.Same(structType.Kind(), reflect.Struct)
 
-	keys := extractKeys(elemType, options)
-	data := extractRows(elemType, objects, options)
+	columnNames := extractKeys(structType, options)
+	dataRows := extractRows(structType, objects, options)
 
-	return keys, data
+	return columnNames, dataRows
 }
 
 func extractKeys(elemType reflect.Type, options *Options) []string {
-	var keys []string
+	var columnNames []string
 	for idx := 0; idx < elemType.NumField(); idx++ {
 		field := elemType.Field(idx)
 		if field.PkgPath == "" { // 只处理导出字段
@@ -43,14 +43,14 @@ func extractKeys(elemType reflect.Type, options *Options) []string {
 			if tagValue == "" {
 				tagValue = field.Name
 			}
-			keys = append(keys, tagValue)
+			columnNames = append(columnNames, tagValue)
 		}
 	}
-	return keys
+	return columnNames
 }
 
 func extractRows[T any](elemType reflect.Type, objects []*T, options *Options) [][]string {
-	var rows [][]string
+	var dataRows [][]string
 	for _, item := range objects {
 		elem := reflect.ValueOf(item).Elem()
 		var row []string
@@ -61,12 +61,12 @@ func extractRows[T any](elemType reflect.Type, objects []*T, options *Options) [
 				row = append(row, formatValue(value, options))
 			}
 		}
-		rows = append(rows, row)
+		dataRows = append(dataRows, row)
 	}
-	return rows
+	return dataRows
 }
 
-func newTroTHs(keys []string) string {
+func newHeadLine(keys []string) string {
 	sb := printgo.NewPTS()
 	if len(keys) > 0 {
 		sb.WriteString("<tr>")
@@ -78,7 +78,7 @@ func newTroTHs(keys []string) string {
 	return sb.String()
 }
 
-func newTrnTDs(data [][]string) []string {
+func newDataRows(data [][]string) []string {
 	var rows []string
 	for _, row := range data {
 		sb := printgo.NewPTS()

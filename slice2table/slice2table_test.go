@@ -36,14 +36,14 @@ func TestNewTable0(t *testing.T) {
 	require.Equal(t, `<table border="1"><tr><th>姓名</th><th>排名</th></tr></table>`, webTable)
 }
 
-func TestNewTableWithOptions(t *testing.T) {
+func TestGenTable(t *testing.T) {
 	type StudentType struct {
 		Name string `TH:"姓名"`
 		Rank int    `TH:"排名"`
 	}
 
 	var students = []*StudentType{{Name: "LuoLuo", Rank: 1}}
-	webTable := slice2table.NewTableWithOptions(students, slice2table.NewOptions().WithTagName("TH"))
+	webTable := slice2table.GenTable(students, slice2table.NewOptions().WithTagName("TH"))
 	t.Log(webTable)
 
 	require.Equal(t, `<table border="1"><tr><th>姓名</th><th>排名</th></tr><tr><td>LuoLuo</td><td>1</td></tr></table>`, webTable)
